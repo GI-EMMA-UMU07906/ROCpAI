@@ -38,14 +38,17 @@ library(ROCpAI)
 # Introduction #
 The **ROCpAI** package allows to calculate the area under the ROC curve (AUC) and the partial area under the  ROC curve (pAUC) as well as partial area indexes related with the pAUC over a restricted false positive interval of interest even if the ROC curve is improper.
 
-To do this, the package calculates the specificty and sensibility from a classification model with the function **points.curve**, after that, it calculates the partia area and two standardized: the McClish index [@McClish1989] with the **mcpAUC** if the ROC curve is proper over the restricted interval, and the **tpAUC** index according for any shape of the ROC curve over such interval, even if it is improper.
+To do this, the package calculates the specificty and sensitivity from a classification model with the function **points.curve**, after that, it calculates the partia area and two standardized: the McClish index [@McClish1989] with the **mcpAUC** if the ROC curve is proper over the restricted interval, and the **tpAUC** index according for any shape of the ROC curve over such interval, even if it is improper.
 Moreover,the functions **tpAUCboot** and **mcpAUCboot** apply bootstrap resampling [@DavisonHinkley1997] to calculate the empiral standard deviation and the confidence interval of these standardized indexes.
 
 ## Installation ##
 
-The installation of **ROCpAI** package is performed via Github:
+The installation of **ROCpAI** package is performed via Biocondcutor:
 ```{r installation, eval=FALSE}
-devtools::install_github("juanpegarcia/ROCpAI")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("ROCpAI")
 ```
 
 ## Prerequisites ##
@@ -74,7 +77,7 @@ genes
 
 ##  PointCurves ##
 
-This function generates the points of the ROC curve given by the pairs of the true positive rate (sensitibity) and false positive rate (1-specificity) for each possible cut-off point. **pointsCurve** needs 2 parameters: x and y. The first parameter correspond to a vector with the cases’ tags, while the second one is a vector with the value of each case. This function returns a matrix with the sensibility and specifity.
+This function generates the points of the ROC curve given by the pairs of the true positive rate (sensitivity) and false positive rate (1-specificity) for each possible cut-off point. **pointsCurve** needs 2 parameters: x and y. The first parameter correspond to a vector with the cases’ tags, while the second one is a vector with the value of each case. This function returns a matrix with the sensitivity and specifity.
 
 ```{r}
 pointsCurve(genes[,1], genes[,2])
@@ -168,11 +171,6 @@ resultMc
 ```
 
 # Information #
-
-## Contact ##
-
-The source code is available at **github**. For bug/error reports please refer
-to ROCpAI github issues [https://github.com/juanpegarcia/ROCpAI/issues](https://github.com/juanpegarcia/ROCpAI/issues).
 
 ## License ##
 
